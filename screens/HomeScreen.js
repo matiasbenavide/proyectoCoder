@@ -11,6 +11,7 @@ import ShowCart from '../components/ShowCart';
 const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories.list);
+    console.log(categories);
 
     const handleSelectedCategory = (item) => {
         dispatch(selectCategory(item.id))
@@ -24,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
     )
 
     return (
-        <View>
+        <View style={styles.container}>
             <FlatList
                 data={categories}
                 keyExtractor={item => item.id}
@@ -35,5 +36,11 @@ const HomeScreen = ({ navigation }) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+})
 
 export default connect()(HomeScreen);

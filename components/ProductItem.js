@@ -15,15 +15,15 @@ const BreadItem = ({ item, onSelected }) => {
     }
 
     return(
-        <View>
+        <View style={styles.breadItem}>
             <TouchableCmp
                 onPress={() => onSelected(item)}
             >
                 <View>
-                    <View>
-                        <Text>{item.name}</Text>
+                    <View style={styles.breadRow}>
+                        <Text style={styles.title}>{item.name}</Text>
                     </View>
-                    <View>
+                    <View style={styles.price}>
                         <Text>$ {item.price}</Text>
                     </View>
                 </View>
@@ -31,5 +31,24 @@ const BreadItem = ({ item, onSelected }) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    breadItem: {
+        height: 100,
+        width: '100%',
+        backgroundColor: '#ccc',
+        padding: 0,
+        margin: 0,
+    },
+    breadRow: {
+        flexDirection: 'row',
+    },
+    title: {
+        fontSize: 20,
+    },
+    price: {
+        fontFamily: 'play-fair-italic',
+    }
+})
 
 export default BreadItem;

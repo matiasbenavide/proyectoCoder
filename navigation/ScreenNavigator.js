@@ -17,7 +17,7 @@ const ROUTES = {
 
 const ProductNavigatior = () => (
     <NavigationContainer>
-        <Sack.Navigator
+        <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
                 headerStyle: {
@@ -37,21 +37,21 @@ const ProductNavigatior = () => (
                 }}
             />
             <Stack.Screen
-                name={Categories}
+                name="Categories"
                 component={CategoryScreen}
                 options={({route}) => ({title: route.params.name})}
             />
             <Stack.Screen
-                name={Product}
+                name="Product"
                 component={ProductScreen}
                 options={({route}) => ({title: route.params.name})}
             />
             <Stack.Screen
-                name={Cart}
+                name="Cart"
                 component={CartScreen}
                 options={{title: 'Cart'}}
             />
-        </Sack.Navigator>
+        </Stack.Navigator>
     </NavigationContainer>
 )
 

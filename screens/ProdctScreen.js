@@ -21,15 +21,15 @@ const ProductScreen = ({ navigation }) => {
     const handleAddItemCart = () => dispatch(addItem(product))
 
     return(
-        <View>
+        <View style={styles.screen}>
             <View>
-                <Text>{product.name}</Text>
+                <Text style={styles.name}>{product.name}</Text>
             </View>
             <View>
-                <Text>{product.description}</Text>
+                <Text style={styles.description}>{product.description}</Text>
             </View>
             <View>
-                <Text>{product.price}</Text>
+                <Text style={styles.price}>{product.price}</Text>
             </View>
             <View>
                 <Button title="AGREGAR AL CARRITO" onPress={handleAddItemCart} />
@@ -38,5 +38,23 @@ const ProductScreen = ({ navigation }) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title: {
+        fontSize: 25,
+    },
+    price: {
+        fontSize: 40,
+        fontFamily: 'play-fair-italic'
+    },
+    description: {
+        fontSize: 20,
+    }
+})
 
 export default connect()(ProductScreen)

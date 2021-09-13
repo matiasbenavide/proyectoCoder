@@ -8,11 +8,11 @@ import {
 
 const CartItem = ({ item, onDelete }) => {
     return(
-        <View>
-            <View>
-                <Text>{item.name}</Text>
+        <View style={styles.item}>
+            <View style={styles.header}>
+                <Text style={styles.text}>{item.name}</Text>
             </View>
-            <View>
+            <View style={styles.detail}>
                 <View>
                     <Text>Cantidad: {item.quantity}</Text>
                 </View>
@@ -26,5 +26,26 @@ const CartItem = ({ item, onDelete }) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    item: {
+        flex: 1,
+        padding: 8,
+    },
+    header: {
+        fontFamily: 'play-fair-italic',
+    },
+    detail: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    text: {
+        fontSize: 16,
+        fontFamily: 'play-fair',
+    },
+})
 
 export default CartItem;
