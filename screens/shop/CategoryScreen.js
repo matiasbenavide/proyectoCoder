@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import {
     View,
-    FlatList
+    FlatList,
+    StyleSheet
 } from 'react-native';
 
 import { useSelector, useDispatch, connect } from 'react-redux';
 
-import ProductItem from '../components/ProductItem';
+import ProductItem from '../../components/ProductItem';
 
-import { filterProducts, selectProduct } from '../store/actions/products.actions';
-
-import ShowCart from '../components/ShowCart';
+import { filterProducts, selectProduct } from '../../store/actions/products.actions';
 
 const CategoryScreen = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -35,13 +34,20 @@ const CategoryScreen = ({ navigation }) => {
     return(
         <View>
             <FlatList
+                style={styles.products}
                 data={products}
                 keyExtractor={item => item.id}
                 renderItem={renderItemProduct}
             />
-            <ShowCart navigation={navigation} />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    products: {
+        marginTop: 10,
+        fontFamily: 'press-start-2p'
+    }
+})
 
 export default connect()(CategoryScreen);

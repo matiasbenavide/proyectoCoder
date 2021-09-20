@@ -1,0 +1,79 @@
+import React, { useCallback, useReducer } from "react";
+import { Alert } from 'react-native';
+import { Button } from "react-native-elements";
+import { useDispatch } from "react-redux";
+import AuthScreenWrapper from '../../components/AuthScreenWrapper';
+import { login } from '../../store/actions/auth.actions';
+import Input from '../../components/Input';
+import { formReducer, FORM_INPUT_UPDATE } from './formReducer';
+
+const LoginScreen = () => {
+    const dispatch = useDispatch();
+    const [formState, formDispatch] = useReducer(formReducer, {
+        inputValues:{
+            email: '',
+            password: '',
+        },
+        inputValidities: {
+            email: false,
+            password: false,
+        },
+        formIsValid: false,
+    });
+
+    const handleLogIn = () => {
+        if(formState.formIsValid) {
+            dispatch(login(formState.inputValues.email, formState.inputValues.password));
+        } else {
+            Alert.alert(
+                'formulario inválido',
+                'Ingrese email y contraseña válidos',
+                [{ text: 'Ok' }]
+            );
+        }
+    }
+
+    const onInputChangeHandler = useCallback((inputIdentifier, inputValue, inputValidity) => {
+        formDispatch({
+            type: FORM_INPUT_UPDATE,
+            value: inputValue,
+            isValid: inputValidity,
+            input: inputIdentifier,
+        });
+    }, [formDispatch]);
+
+    return(
+        <AuthScreenWrapper
+            title="INGRESAR"
+            message="¿Aún no tienes cuenta?"
+            buttonText="Registrarme"
+            buttonPath="Register"
+        >
+            <Input
+                id="email"
+                label="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                errorText="Por favor ingrese un email válido"
+                required
+                email
+                onInputChange={onInputChangeHandler}
+            />
+            <Input
+                id="password"
+                label="Password"
+                secureTextEntry
+                autoCapitalize="none"
+                errorText="Ingrese contraseña"
+                required
+                onInputChange={onInputChangeHandler}
+            />
+            <Button
+                title="INGRESAR"
+                onPress={handleLogIn}
+            />
+        </AuthScreenWrapper>
+    );
+}
+
+export default LoginScreen;

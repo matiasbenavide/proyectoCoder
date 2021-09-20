@@ -14,10 +14,10 @@ const CartItem = ({ item, onDelete }) => {
             </View>
             <View style={styles.detail}>
                 <View>
-                    <Text>Cantidad: {item.quantity}</Text>
+                    <Text style={styles.quantityPrice}>Cantidad: {item.quantity}</Text>
                 </View>
                 <View>
-                    <Text>$ {item.price}</Text>
+                    <Text style={styles.quantityPrice}>$ {item.price}</Text>
                 </View>
                 <View>
                     <Button title="Borrar" onPress={() => onDelete(item.id)} />
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     header: {
-        fontFamily: 'play-fair-italic',
+        fontFamily: 'press-start-2p',
     },
     detail: {
         flex: 1,
@@ -44,8 +44,12 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 16,
-        fontFamily: 'play-fair',
+        fontFamily: 'press-start-2p',
     },
+    quantityPrice: {
+        fontSize: 14,
+        fontFamily: 'press-start-2p',
+    }
 })
 
 export default CartItem;

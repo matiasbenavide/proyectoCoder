@@ -14,7 +14,7 @@ const GridItem = ({ item, onSelected }) => {
                 onPress={() => onSelected(item)}
             >
                 <View>
-                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.title}>{item.name}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     title: {
-        fontFamily: 'play-fair-italic',
+        fontFamily: 'press-start-2p',
+        fontSize: 13,
     },
 })
 

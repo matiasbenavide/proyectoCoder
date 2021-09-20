@@ -10,9 +10,9 @@ import {
 
 import { useSelector, connect, useDispatch } from 'react-redux';
 
-import { removeItem, confirmItem } from '../store/actions/cart.actions';
+import { removeItem, confirmItem } from '../../store/actions/cart.actions';
 
-import CartItem from '../components/CartItem';
+import CartItem from '../../components/CartItem';
 
 const CartScreen = () => {
     const dispatch = useDispatch();
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 24,
-        fontFamily: 'play-fair-italic',
+        fontFamily: 'press-start-2p',
         padding: 8,
     },
     total: {

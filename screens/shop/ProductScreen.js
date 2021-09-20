@@ -7,9 +7,7 @@ import {
 } from 'react-native';
 import { useSelector, connect, useDispatch } from "react-redux";
 
-import { addItem } from '../store/actions/cart.actions';
-
-import ShowCart from "../components/ShowCart";
+import { addItem } from '../../store/actions/cart.actions';
 
 const ProductScreen = ({ navigation }) => {
     const productID = useSelector(state => state.products.selectedID)
@@ -23,7 +21,7 @@ const ProductScreen = ({ navigation }) => {
     return(
         <View style={styles.screen}>
             <View>
-                <Text style={styles.name}>{product.name}</Text>
+                <Text style={styles.title}>{product.name}</Text>
             </View>
             <View>
                 <Text style={styles.description}>{product.description}</Text>
@@ -34,7 +32,6 @@ const ProductScreen = ({ navigation }) => {
             <View>
                 <Button title="AGREGAR AL CARRITO" onPress={handleAddItemCart} />
             </View>
-            <ShowCart navigation={navigation} />
         </View>
     )
 }
@@ -47,10 +44,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
+        fontFamily: 'press-start-2p'
     },
     price: {
         fontSize: 40,
-        fontFamily: 'play-fair-italic'
+        fontFamily: 'press-start-2p'
     },
     description: {
         fontSize: 20,

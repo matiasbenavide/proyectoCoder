@@ -3,10 +3,9 @@ import { FlatList, View, StyleSheet } from "react-native";
 
 import { useSelector, useDispatch, connect } from "react-redux";
 
-import { selectCategory } from '../store/actions/category.actions';
+import { selectCategory } from '../../store/actions/category.actions';
 
-import GridItem from '../components/GridItem';
-import ShowCart from '../components/ShowCart';
+import GridItem from '../../components/GridItem';
 
 const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
     const handleSelectedCategory = (item) => {
         dispatch(selectCategory(item.id))
         navigation.navigate('Categories', {
-            name: item.title
+            name: item.name
         })
     }
 
@@ -32,7 +31,6 @@ const HomeScreen = ({ navigation }) => {
                 renderItem={renderGridItem}
                 numColumns={2}
             />
-            <ShowCart navigation={navigation} />
         </View>
     )
 }
