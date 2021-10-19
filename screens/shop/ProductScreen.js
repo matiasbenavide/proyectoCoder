@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    Button,
+    Image
 } from 'react-native';
 import { useSelector, connect, useDispatch } from "react-redux";
 
@@ -19,18 +20,21 @@ const ProductScreen = ({ navigation }) => {
     const handleAddItemCart = () => dispatch(addItem(product))
 
     return(
-        <View style={styles.screen}>
-            <View>
-                <Text style={styles.title}>{product.name}</Text>
-            </View>
-            <View>
-                <Text style={styles.description}>{product.description}</Text>
-            </View>
-            <View>
-                <Text style={styles.price}>{product.price}</Text>
-            </View>
-            <View>
-                <Button title="AGREGAR AL CARRITO" onPress={handleAddItemCart} />
+        <View>
+            <Image style={styles.image} source={product.image} />
+            <View style={styles.screen}>
+                <View>
+                    <Text style={styles.title}>{product.name}</Text>
+                </View>
+                <View>
+                    <Text style={styles.description}>{product.description}</Text>
+                </View>
+                <View>
+                    <Text style={styles.price}>{product.price}</Text>
+                </View>
+                <View>
+                    <Button title="AGREGAR AL CARRITO" onPress={handleAddItemCart} />
+                </View>
             </View>
         </View>
     )
@@ -38,9 +42,13 @@ const ProductScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
+    },
+    image: {
+        width: '100%',
+        height: '70%',
+        marginBottom: 20,
     },
     title: {
         fontSize: 25,

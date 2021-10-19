@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation }) => {
 
     const handleSelectedCategory = (item) => {
         dispatch(selectCategory(item.id))
-        navigation.navigate('Categories', {
+        navigation.navigate('Products', {
             name: item.name
         })
     }

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-} from 'react-native';
+import { View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -40,6 +36,7 @@ const TabNavigator = () => (
                 tabBatIcon: () => (
                     <View>
                         <Ionicons name="md-cart" size={24} color="black" />
+                        <Text>Carrito</Text>
                     </View>
                 )
             }}

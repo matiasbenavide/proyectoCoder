@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, PlatformColor } from "react-native";
+import { Platform } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CartScreen from '../../screens/cart/CartScreen';
 
@@ -15,7 +15,7 @@ const CartNavigator = () => (
             headerTintColor: Platform.OS === 'android' ? '' : 'blue',
             headerTitleStyle: {
                 fontWeight: 'bold',
-            }
+            },
         }}
     >
         <Stack.Screen

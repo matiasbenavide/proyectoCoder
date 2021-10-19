@@ -22,7 +22,7 @@ const CategoryScreen = ({ navigation }) => {
 
     const handleSelected = (item) => {
         dispatch(selectProduct(item.id))
-        navigation.navigate('Product', {
+        navigation.navigate('Detail', {
             name: item.name
         })
     }
@@ -36,7 +36,7 @@ const CategoryScreen = ({ navigation }) => {
             <FlatList
                 style={styles.products}
                 data={products}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 renderItem={renderItemProduct}
             />
         </View>

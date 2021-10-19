@@ -1,27 +1,25 @@
-import React from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    FlatList,
-    TouchableOpacity,
-    ActivityIndicator
-} from 'react-native';
-
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useSelector, connect, useDispatch } from 'react-redux';
 
 import { removeItem, confirmItem } from '../../store/actions/cart.actions';
+import { addOrder } from '../../store/actions/order.actions';
 
 import CartItem from '../../components/CartItem';
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const ITEMS = useSelector(state => state.cart.items);
     const TOTAL = useSelector(state => state.cart.total);
     const STATUS = useSelector(state => state.cart.status);
 
+    
+
     const handleDeleteItem = (id) => dispatch(removeItem(id));
-    const handleConfirmItem = (items) => dispatch(confirmItem(items));
+    const handleSaveOrder = (items) => {
+        dispatch(confirmItem(items), addOrder(ITEMS))
+        navigation.navigate('OrderTab')
+    }
 
     const renderCardItems = (itemData) => (
         <CartItem
@@ -35,7 +33,7 @@ const CartScreen = () => {
             <View style={styles.list}>
                 <FlatList
                     data={ITEMS}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.id.toString()}
                     renderItem={renderCardItems}
                 />
             </View>
@@ -47,12 +45,15 @@ const CartScreen = () => {
                         />
                     )
                     : (
-                        <TouchableOpacity style={styles.confirm}>
-                            <Text>Confirmar</Text>
-                            <View style={styles.total}>
-                                <Text style={styles.text}>TOTAL</Text>
-                                <Text style={styles.text}>$ {TOTAL}</Text>
+                        <TouchableOpacity style={styles.confirm} onPress={handleSaveOrder}>
+                            <View style={styles.view}>
+                                <Text style={styles.text}>Confirmar</Text>
+                                <View style={styles.total}>
+                                    <Text style={styles.text}>TOTAL</Text>
+                                    <Text style={styles.text}>$ {TOTAL}</Text>
+                                </View>
                             </View>
+
                         </TouchableOpacity>
                     )
                 }
@@ -77,15 +78,21 @@ const styles = StyleSheet.create({
     list: {
         flex: .8,
     },
+    view: {
+        alignItems: 'center',
+    },
     text: {
         fontSize: 24,
         fontFamily: 'press-start-2p',
         padding: 8,
     },
     total: {
+        width: '100%',
+        alignItems: 'center',
         flexDirection: 'row',
     },
     confirm: {
+        width: '100%',
         backgroundColor: '#ccc',
         borderRadius: 10,
         padding: 10,
