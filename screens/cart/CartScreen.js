@@ -12,12 +12,12 @@ const CartScreen = ({ navigation }) => {
     const ITEMS = useSelector(state => state.cart.items);
     const TOTAL = useSelector(state => state.cart.total);
     const STATUS = useSelector(state => state.cart.status);
-
-    
+    const [order, setOrder] = useState('');
 
     const handleDeleteItem = (id) => dispatch(removeItem(id));
-    const handleSaveOrder = (items) => {
-        dispatch(confirmItem(items), addOrder(ITEMS))
+    
+    const handleSaveOrder = (items, product) => {
+        dispatch(confirmItem(items), setOrder(product), addOrder(order))
         navigation.navigate('OrderTab')
     }
 

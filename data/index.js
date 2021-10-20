@@ -1,36 +1,30 @@
 import * as SQLite from 'expo-sqlite';
 
-const db = SQLite.openDatabase('order.db');
+const db = SQLite.openDatabase('address.db');
 
 export const init = () => {
     return new Promise((resolve, reject) => {
         db.transaction((tx) => {
-            tx.executeSql(`CRETE TABLE IF NOT EXISTS order (
-                id INTEGER PRIMARY KEY NOT NULL,
-                product TEXT NOT NULL,
-                image TEXT NOT NULL,
-                lat REAL NOT NULL,
-                lng REAL NOT NULL
+            tx.executeSql(`CREATE TABLE IF NOT EXISTS order (
+                    id INTEGER PRIMARY KEY NOT NULL,
+                    product TEXT NOT NULL
                 )`,
                 [],
                 () => resolve(),
-                (_, err) => reject(err)
+                (_, err) => reject(err),
             )
-        })
-    })
-}
+        });
+    });
+};
 
 export const insertOrder = (
-    product,
-    image,
-    lat,
-    lng
+    product
 ) => {
     return new Promise((resolve, reject) => {
         db.transaction((tx) => {
             tx.executeSql(
-                `INSERT INTO order (product, image, lat, lng) VALUES (?, ?, ?, ?)`,
-                [product, image, lat, lng],
+                `INSERT INTO order (product) VALUES (?)`,
+                [product],
                 (_, result) => resolve(result),
                 (_, error) => reject(error),
             )

@@ -10,7 +10,6 @@ import GridItem from '../../components/GridItem';
 const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories.list);
-    console.log(categories);
 
     const handleSelectedCategory = (item) => {
         dispatch(selectCategory(item.id))

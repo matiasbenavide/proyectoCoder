@@ -17,7 +17,9 @@ const ProductScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const handleAddItemCart = () => dispatch(addItem(product))
+    const handleAddItemCart = () => {
+        dispatch(addItem(product))
+    }
 
     return(
         <View>

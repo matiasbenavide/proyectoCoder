@@ -10,7 +10,7 @@ import { loadOrders } from '../../store/actions/order.actions';
 
 const OrdersScreen = ({ navigation }) => {
     const dispatch = useDispatch();
-    const orders = useSelector(state => state.products.list);
+    const orders = useSelector(state => state.cart.total);
     console.log(orders);
 
     useLayoutEffect(() => {

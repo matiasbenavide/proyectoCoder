@@ -6,21 +6,9 @@ export const LOAD_ORDERS = 'LOAD_ORDERS';
 
 export const addOrder = (product) => {
     return async dispatch => {
-        const fileName = image.split('/').pop();
-        const Path = FileSystem.documentDirectory + fileName;
-
         try {
-            FileSystem.moveAsync({
-                from: image,
-                to: Path,
-            })
-
             const result = await insertOrder(
-                product,
-                Path,
-                'Order',
-                lat,
-                lng
+                product
             )
 
             dispatch({
@@ -28,7 +16,6 @@ export const addOrder = (product) => {
                 payload: {
                     id: result.insertId,
                     product,
-                    image: Path
                 }
             })
 

@@ -1,8 +1,7 @@
 class Order {
-    constructor(id, product, image) {
+    constructor(id, product) {
         this.id = id.toString();
         this.product = product;
-        this.image = image;
     }
 }
 

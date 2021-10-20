@@ -1,7 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, Image, StykeSheet } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 
-const OrderItem = ({ product, image, onSelect }) => {
+const OrderItem = ({ product, onSelect }) => {
+    console.log(product);
     return(
         <TouchableOpacity
             onPress={onSelect}
